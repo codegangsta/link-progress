@@ -8,6 +8,11 @@ import { RangeSet, RangeSetBuilder } from "@codemirror/state";
 import { syntaxTree } from "@codemirror/language";
 import { ProgressWidget } from "./widget";
 
+// TODO: Add these as settings
+const incompleteChars = [" ", "/"];
+const completeChars = ["x", "X", "-"];
+const taskChars = [...completeChars, ...incompleteChars];
+
 class ProgressViewPlugin {
 	decorations: RangeSet<Decoration>;
 
@@ -44,13 +49,13 @@ class ProgressViewPlugin {
 						const cache = app.metadataCache.getFileCache(file);
 						if (!cache) return;
 
-						const tasks = cache.listItems?.filter(
-							(item) => item.task
+						const tasks = cache.listItems?.filter((item) =>
+							taskChars.includes(item.task ?? "")
 						);
-						if (!tasks) return;
+						if (!tasks || tasks.length == 0) return;
 
-						const incomplete = tasks.filter(
-							(task) => task.task == " " || task.task == "/"
+						const incomplete = tasks.filter((task) =>
+							incompleteChars.includes(task.task ?? "")
 						);
 
 						const percent = Math.round(
