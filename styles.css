@@ -6,3 +6,11 @@ available in the app when your plugin is enabled.
 If your plugin does not need CSS, delete this file.
 
 */
+.progress-widget {
+	font-size: var(--tag-size);
+	padding: var(--tag-padding-y) var(--tag-padding-x);
+	color: var(--tag-color);
+	border: 1px solid var(--tag-border-color);
+	border-radius: 0.25rem;
+	margin-right: 0.5rem;
+}
