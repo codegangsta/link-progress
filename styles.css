@@ -7,10 +7,104 @@ If your plugin does not need CSS, delete this file.
 
 */
 .progress-widget {
-	font-size: var(--tag-size);
-	padding: var(--tag-padding-y) var(--tag-padding-x);
-	color: var(--tag-color);
-	border: 1px solid var(--tag-border-color);
-	border-radius: 0.25rem;
-	margin-right: 0.5rem;
+	/* font-size: var(--tag-size); */
+	/* padding: var(--tag-padding-y) var(--tag-padding-x); */
+	/* color: var(--tag-color); */
+	/* border: 1px solid var(--tag-border-color); */
+	/* border-radius: 0.25rem; */
+	/* margin-right: 0.5rem; */
+}
+
+.progress-widget {
+	position: relative;
+	width: 18px;
+	height: 18px;
+	line-height: 100%;
+	display: inline-block;
+	border-radius: 50%;
+	background: var(--background-primary);
+	border: 2px solid var(--background-primary);
+	outline: 1px solid var(--interactive-accent);
+	background-image: linear-gradient(
+		to right,
+		transparent 50%,
+		var(--interactive-accent) 0
+	);
+	color: transparent;
+	text-align: center;
+	top: 2px;
+	margin-left: -0.25em;
+	margin-right: 0.25em;
+}
+
+.progress-widget .tooltip {
+	visibility: hidden;
+	position: absolute;
+	width: 100px;
+	text-align: left;
+	bottom: 24px;
+	background-color: var(--background-primary-alt);
+	color: var(--text-normal);
+}
+.progress-widget:hover .tooltip {
+	visibility: visible;
+}
+
+.progress-widget:hover {
+	outline: 1px solid var(--interactive-accent-hover);
+	background-image: linear-gradient(
+		to right,
+		transparent 50%,
+		var(--interactive-accent-hover) 0
+	);
+}
+
+.progress-widget.complete {
+	background: var(--interactive-accent);
+}
+
+.progress-widget input {
+	background: transparent;
+	border: none;
+}
+
+.progress-widget input[type="checkbox"]:checked {
+	background: transparent;
+	border: none;
+	top: 1px;
+	left: 1px;
+}
+
+.progress-widget ~ .task-list-label {
+	display: none;
+}
+
+.progress-widget ~ .cm-hmd-internal-link {
+	font-weight: 600;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(0.5turn);
+	}
+}
+@keyframes bg {
+	50% {
+		background: var(--interactive-accent);
+	}
+}
+
+.progress-widget::before {
+	content: " ";
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	border-radius: 0 100% 100% 0 / 50%;
+	background-color: inherit;
+	transform-origin: left;
+	animation: spin 50s linear infinite, bg 100s step-end infinite;
+	animation-play-state: paused;
+	animation-delay: inherit;
 }
