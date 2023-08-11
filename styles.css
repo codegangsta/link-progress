@@ -40,14 +40,18 @@ If your plugin does not need CSS, delete this file.
 .progress-widget .tooltip {
 	visibility: hidden;
 	position: absolute;
-	width: 100px;
+	width: 8rem;
 	text-align: left;
-	bottom: 24px;
+	bottom: 1.5rem;
 	background-color: var(--background-primary-alt);
 	color: var(--text-normal);
 }
 .progress-widget:hover .tooltip {
 	visibility: visible;
+}
+
+.is-mobile .mod-cm6 .HyperMD-task-line[data-task] .progress-widget {
+	margin-inline-start: -0.7rem;
 }
 
 .progress-widget:hover {
